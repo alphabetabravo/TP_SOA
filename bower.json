@@ -1,0 +1,28 @@
+{
+  "name": "Pop_Calopea",
+  "description": "Pop Prototype",
+  "version": "0.1.3",
+  "homepage": "http://pop.calopea.com/home",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.3.13",
+    "angular-filter": "~0.5.2",
+    "angular-flexslider": "~1.3.1",
+    "angular-route": "~1.3.13",
+    "angular-ui-select": "~0.9.6",
+    "bootstrap": "~3.3.2",
+    "bootstrap-ui": "~0.12.0",
+    "es5-shim": "~4.1.0",
+    "flexslider": "*",
+    "jquery": "~2.1.3",
+    "flat-ui": "~2.2.2",
+    "html5shiv": "~3.7.2",
+    "respond": "~1.4.2",
+    "font-awesome": "~4.3.0",
+    "angular-bootstrap": "~0.12.0",
+    "fabric": "~1.4.13"
+  },
+  "resolutions": {
+    "angular": "1.3.13"
+  }
+}
