@@ -1,5 +1,5 @@
 module.exports = {
-    consumerKey: 'QDZw1bF6jvsaUtKq580ahfsDS',
-    consumerSecret: 'hq8nrsHa4lAARZP405cVcAGirU0OjnY3s7taazWfZOmW6y4Mtv',
-    callbackURL: 'http://pop.calopea.com:8080/twitter/callback'
+    consumerKey: 'EKHNkEW6SBVP1roEWtsmOa9V7',
+    consumerSecret: 'vcUWkwrlVOBhdtxtGpX2HgPkcWVM9flFDwwEN2m8vrICwamiu1',
+    callbackURL: 'http://127.0.0.1:9999/twitter/callback'
 };

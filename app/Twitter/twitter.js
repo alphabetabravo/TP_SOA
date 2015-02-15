@@ -69,10 +69,10 @@ module.exports = function (app) {
         function (req, res) {
 	        req.session.TwitterToken = req.account.TWtoken;
 	        req.session.TwitterSecretToken = req.account.TWtokenSecret;
-            res.redirect('/pop.html#/contacts');
+            res.redirect('/stimo.html#/home');
         });
 
-    app.get('/contacts/importTwitter',function (req, res) {
+    app.get('/stimo/importTwitter',function (req, res) {
         console.log(req.session);
         console.log("IMPORT TWITTER GENERAL");
 		var nextCursor = -1;
@@ -88,13 +88,14 @@ module.exports = function (app) {
 
 
 		twitter.get(
-		  '/friends/list',
+		  '/statuses/user_timeline', { count: 100, user_id: '24513872' },
 		function logResponse(error, data, response) {
 		  if (error){
 				res.send(error);
 			}else {
-
-				recupUsers(data.users,twitter);
+				console.log(data);
+				//recupUsers(data.users,twitter);
+				res.status(200).json(data);
 			}
 		});
 

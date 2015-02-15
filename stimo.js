@@ -21,7 +21,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request
-
+app.use(session({ secret: 'java is a cat', saveUninitialized: true, resave: true, cookie: { maxAge: 86400000 }}));
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());

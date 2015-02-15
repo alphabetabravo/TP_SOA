@@ -1,4 +1,58 @@
 <div class="container" id="overview">
     <!--main content end-->
     <h1>Stimo elite without Java :</h1>
+    <div ng-show="!offreSelection">
+        <a href="/oauth/twitter/">
+            <button type="button" class="btn btn-theme">Connect</button>
+        </a>
+        <button type="button" class="btn btn-theme" data-ng-click="searchOnTwitter()">Cherche ton logement !</button>
+        <button type="button" class="btn btn-theme" data-ng-click="getMortGage()">Simu MortGage!</button>
+        <hr>
+        <h4>Trie :</h4>
+        <button type="button" class="btn btn-theme" data-ng-click="orderByLieux()">Lieux !</button>
+        <button type="button" class="btn btn-theme" data-ng-click="orderByPrix()">Prix !</button>
+        <hr>
+        <div id="offreTwitter-list" class="row" >
+            <!-- LOOP OVER THE OffresTwitter -->
+            <div id="offreTwitterList" class="col-md-3" ng-repeat="offreTwitter in offreTwitters">
+                <div class="panel panel-default">
+                    <div id="descriptifID" ng-repeat="item in offreTwitter track by $index">
+                        <div class="panel-body">
+                            <p class="text">{{item}}</p>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <p><a data-ng-click="faireUnPret(offreTwitter)" class="btn btn-primary btn-block" role="button">Valider
+                            !</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+    <!--<div ng-show="!offreSelection">-->
+        <h2>Simulation prêt immobilier :</h2>
+        <hr>
+        <input type="text" class="form-control pull-right" id="prixGlobal"
+                                   placeholder="Prix Global" ng-model="formData.LoanAmount">
+        <input type="text" class="form-control pull-right" id="nbYears"
+                                   placeholder="Nombre années" ng-model="formData.Years">
+        <input type="text" class="form-control pull-right" id="interest"
+                                   placeholder="Interêts" ng-model="formData.Interest">
+        <input type="text" class="form-control pull-right" id="annualTaxe"
+                                   placeholder="Taxe Annuel" ng-model="formData.AnnualTax">
+        <input type="text" class="form-control pull-right" id="annualInsurance"
+                                   placeholder="Assurance Annuel" ng-model="formData.AnnualInsurance">
+        <p><a data-ng-click="getMortGage()" class="btn btn-primary btn-block" role="button">Lancer la simulation !</a></p>
+        <hr>
+        <div ng-show="resultatSimu">
+            <h2>Résultats de la simulation</h2>
+            <p class="text">Payement mensuel + Interets : {{valeurSimu.MonthlyPrincipalAndInterest}}</p>
+            <p class="text">Taxe mensuel : {{valeurSimu.MonthlyTax}}</p>
+            <p class="text">Assurance mensuel : {{valeurSimu.MonthlyInsurance}}</p>
+            <p class="text">Paiement total par moi: {{valeurSimu.TotalPayment}}</p>
+             <p><a data-ng-click="" class="btn btn-primary btn-block" role="button">Enregistrer dans Cloud</a></p>
+              <p><a data-ng-click="" class="btn btn-primary btn-block" role="button">Changer Offres</a></p>
+        </div>
+    </div>
 </div>
