@@ -1,52 +1,65 @@
-<!--
+<?xml version="1.0"?>
 <definitions name="HelloService"
-   targetNamespace="http://127.0.0.1:1234/wsdl/HelloService.wsdl"
-   xmlns="http://schemas.xmlsoap.org/wsdl/"
-   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-   xmlns:tns="http://127.0.0.1:1234/wsdl/HelloService.wsdl"
-   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-   <message name="SayHelloRequest">
-    <part name="firstName" type="xsd:string"/>
-   </message>
-   <message name="SayHelloResponse">
-    <part name="greeting" type="xsd:string"/>
-   </message>
+targetNamespace="http://127.0.0.1:9999/HelloService.wsdl"
+          xmlns:tns="http://127.0.0.1:9999/HelloService.wsdl"
+          xmlns:xsd1="http://127.0.0.1:9999/HelloService.xsd"
+          xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+          xmlns="http://schemas.xmlsoap.org/wsdl/">
 
+    <types>
+       <schema targetNamespace="http://127.0.0.1:9999/HelloService.xsd"
+              xmlns="http://www.w3.org/2000/10/XMLSchema">
+           <element name="TradePriceRequest">
+              <complexType>
+                  <all>
+                      <element name="tickerSymbol" type="string"/>
+                  </all>
+              </complexType>
+           </element>
+           <element name="TradePrice">
+              <complexType>
+                  <all>
+                      <element name="price" type="float"/>
+                  </all>
+              </complexType>
+           </element>
+       </schema>
+    </types>
 
+    <message name="GetLastTradePriceInput">
+        <part name="body" element="xsd1:TradePriceRequest"/>
+    </message>
 
-   <portType name="Hello_PortType">
-    <operation name="sayHello">
-       <input message="tns:SayHelloRequest"/>
-       <output message="tns:SayHelloResponse"/>
-    </operation>
-   </portType>
+    <message name="GetLastTradePriceOutput">
+        <part name="body" element="xsd1:TradePrice"/>
+    </message>
 
-   <binding name="Hello_Binding" type="tns:Hello_PortType">
-   <soap:binding style="rpc"
-    transport="http://schemas.xmlsoap.org/soap/http"/>
-   <operation name="sayHello">
-    <soap:operation soapAction="sayHello"/>
-    <input>
-       <soap:body
-        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-        namespace="urn:examples:helloservice"
-        use="encoded"/>
-    </input>
-    <output>
-       <soap:body
-        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-        namespace="urn:examples:helloservice"
-        use="encoded"/>
-    </output>
-   </operation>
-   </binding>
+    <portType name="HelloServicePortType">
+        <operation name="GetLastTradePrice">
+           <input message="tns:GetLastTradePriceInput"/>
+           <output message="tns:GetLastTradePriceOutput"/>
+        </operation>
+    </portType>
 
-   <service name="Hello_Service">
-    <documentation>WSDL File for HelloService</documentation>
-    <port binding="tns:Hello_Binding" name="Hello_Port">
-       <soap:address
-        location="http://127.0.0.1:1234/wsdl"/>
-    </port>
-   </service>
-</definitions>-->
+    <binding name="HelloServiceSoapBinding" type="tns:HelloServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetLastTradePrice">
+           <soap:operation soapAction="http://127.0.0.1:9999/GetLastTradePrice"/>
+           <input>
+               <soap:body use="literal"/>
+           </input>
+           <output>
+               <soap:body use="literal"/>
+           </output>
+        </operation>
+    </binding>
+
+    <service name="HelloServiceService">
+        <documentation>My first service</documentation>
+        <port name="HelloServicePort" binding="tns:HelloServiceSoapBinding">
+           <soap:address location="http://127.0.0.1:9999/HelloService"/>
+        </port>
+    </service>
+
+</definitions>

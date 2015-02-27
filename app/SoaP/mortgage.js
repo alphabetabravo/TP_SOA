@@ -1,10 +1,13 @@
 var soap = require('soap');
 var url = 'http://www.webservicex.net/mortgage.asmx?WSDL';
-//var urlLocal = 'http://127.0.0.1:1337/testService?wsdl';
+var urlLocal = 'HelloService.wsdl';
+
 
 module.exports = function (app) {
 
 	// URL used in loginCallback above
+	app.post('/HelloService',function (req, res) {res.send("OkSoaP")});
+
 	app.put('/mortgage',
 		function (req, res) {
 			console.log(req.body);
@@ -26,23 +29,27 @@ module.exports = function (app) {
 
 
 	// URL used for sort value about twitter result
-	/*app.get('/sort/:type_sort',
+	app.get('/sort/:type_sort',
 		function (req, res) {
 			//console.log(req.body);
-			var args = {
+			/*var args = {
 				myArg1: 10,
 				myArg2: 15
+			};*/
+			var args = {
+				tickerSymbol: "Test"
 			};
 			soap.createClient(urlLocal, function (err, client) {
-				console.log(client);
-				console.log(err);
-				*//*client.testService(args, function (err, result) {
+				//console.log(client);
+				//console.log(err);
+				client.GetLastTradePrice(args, function (err, result) {
 					console.log("Result SOAP LOCAL");
+					//console.log(err);
 					console.log(result);
-					res.status(200);
-				});*//*
+					//res.status(200);
+				});
 			});
-		});*/
+		});
 
 	// URL used for sort value about twitter result
 	app.get('/googleEngine',
