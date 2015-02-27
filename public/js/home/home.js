@@ -7,6 +7,12 @@ stimoModule.factory('Stimo', ['$http', function ($http) {
         },
         getMortGage: function(parameters){
             return $http.put('/mortgage',parameters)
+        },
+        sortTwitt: function(sortType){
+            return $http.get('/sort/'+sortType)
+        },
+        letsGoGoogle: function(){
+            return $http.get('/googleEngine')
         }
     };
 }]);
@@ -65,6 +71,24 @@ stimoModule.controller('stimoController', ['$scope', '$routeParams', 'Stimo',
 
                 });
 
+	    };
+
+	    $scope.orderByLieux = function(){
+		    console.log("OK trie selon le lieux");
+	        Stimo.sortTwitt("lieux")
+                .success(function (data) {
+                    //$scope.myTwitterS = data;
+                    //console.log($scope.myTwitterS);
+                    //$scope.transformTwitt(data);
+
+
+                });
+
+	    };
+	    $scope.onGoogleEngine = function(){
+	        console.log("Use Database Google Engine Cloud");
+			Stimo.letsGoGoogle().success(function (data) {
+                });
 	    }
 
     }]);
